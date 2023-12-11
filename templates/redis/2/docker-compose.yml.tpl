@@ -58,7 +58,7 @@ services:
       - "--sentinel"
 
   redis-config:
-    image: lgatica/redis-config:1
+    image: denkhaus/redis-cluster-config:1
     environment:
       REDIS_PASSWORD: '${REDIS_PASSWORD}'
     stdin_open: true
@@ -76,7 +76,7 @@ services:
     entrypoint: /bin/true
 
   sentinel-config:
-    image: lgatica/redis-config:2
+    image: denkhaus/redis-cluster-config:1
     environment:
       REDIS_PASSWORD: '${REDIS_PASSWORD}'
     stdin_open: true
