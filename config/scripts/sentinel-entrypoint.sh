@@ -4,10 +4,10 @@ function leader_ip {
   echo -n $(wget -q -O - http://rancher-metadata/latest/stacks/$1/services/$2/containers/0/primary_ip)
 }
 
-REDIS_USER_ID=${REDIS_USER_ID:-100}
-REDIS_GROUP_ID=${REDIS_GROUP_ID:-101}
+REDIS_USER_ID=${REDIS_USER_ID:-redis}
+REDIS_GROUP_ID=${REDIS_GROUP_ID:-redis}
 
-chown $REDIS_USER_ID:$REDIS_GROUP_ID /usr/local/etc/redis/sentinel.conf
+chown -R $REDIS_USER_ID:$REDIS_GROUP_ID /usr/local/etc/redis
 
 /opt/redis/scripts/giddyup service wait scale --timeout 120
 stack_name=`echo -n $(wget -q -O - http://rancher-metadata/latest/self/stack/name)`
